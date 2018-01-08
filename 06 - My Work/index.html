@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WebApp</title>
+  <script src="bower_components/angular/angular.min.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+  <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+  <script src="app.js"></script>
+  <script src="controllers/navbar.controller.js"></script>
+  <script src="controllers/carousel.controller.js"></script>
+  <script src="controllers/alert.controller.js"></script>
+  <script src="controllers/tab.controller.js"></script>
+  <script src="controllers/modal.controller.js"></script>
+  <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body ng-app="webApp">
+  <nav class="navbar navbar-default navbar-fixed-top " ng-controller="navbarController as navbarCtrl" >
+    <div class="container">
+      <div class="navbar-header">
+        <a href="/" class="navbar-brand">
+          <img src="assets/images/logo.png" alt="YOUR LOGO">
+        </a>
+        <button type="button" class="navbar-toggle" ng-click="navbarCtrl.isNavCollapse=!navbarCtrl.isNavCollapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+      <div class="collapse navbar-collapse" uib-collapse="navbarCtrl.isNavCollapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li uib-dropdown>
+            <a uib-dropdown-toggle href="#" >Service <span class="caret"></span></a>
+            <ul uib-dropdown-menu>
+              <li><a href="#">item 1</a></li>
+              <li><a href="#">item 2</a></li>
+              <li><a href="#">item 3</a></li>
+              <li class="disabled"><a href="#" >item 4</a></li>
+              <li class="divider"></li>
+              <li class="dropdown-header"><strong>More Services</strong></li>
+              <li><a href="#">item 5</a></li>
+            </ul>
+          </li>
+        </ul>
+        <form class="navbar-form navbar-left">
+          <input type="text" class="form-control" placeholder="Search..">
+          <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+        </form>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li uib-dropdown>
+            <a uib-dropdown-toggle="" href="#"><span class="glyphicon glyphicon-user"></span> My Accout <span class="caret"></span></a>
+            <ul uib-dropdown-menu="">
+              <li><a href=""><span class="glyphicon glyphicon-wrench"></span>&nbsp;&nbsp;Settings </a></li>
+              <li><a href=""><span class="glyphicon glyphicon-briefcase"></span>&nbsp;&nbsp;Billing</a></li>
+              <li><a href=""><span class="glyphicon glyphicon-refresh"></span>&nbsp;&nbsp;Update Profiles</a></li>
+              <li class="divider"></li>
+              <li><a href=""><span class="glyphicon glyphicon-off"></span>&nbsp;&nbsp;Sign Out</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+
+
+  <div class="container">
+    <div ng-controller="carouselController as carouselCtrl">
+      <div uib-carousel active="carouselCtrl.activeSlideIdx" interval="carouselCtrl.interval" nowrap="carouselCtrl.noWrapFlag" id="carouselID">
+        <div uib-slide="" ng-repeat="slide in carouselCtrl.slides track by slide.id" index="slide.id">
+          <img ng-src="{{slide.imgUrl}}" alt="" class="img-responsive" id="carouselSlide{{slide.id}}">
+          <!--<img alt="" class="img-responsive" id="carouselSlide{{slide.id}}">-->
+          <div class="carousel-caption">
+            <h4>slide num: {{slide.id}}</h4>
+            <p>{{slide.text}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row" id="bigCallout">
+      <div class="col-sm-12">
+        <div class="well well-sm visible-sm visible-xs">
+          <a href="#" class="btn btn-block btn-default btn-lg"><span class="glyphicon glyphicon-phone"></span>&nbsp;Give us a call</a>
+        </div>
+        <div ng-controller="alertController as alertCtrl">
+          <div uib-alert="" class="alert alert-success" ng-show="alertCtrl.show" close="alertCtrl.closeAlert()">
+            <h4>Success!</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque delectus deserunt dicta itaque laudantium quam quibusdam rem.
+              Accusamus dignissimos laboriosam maxime modi praesentium, quaerat ratione rem? Eius fugit ipsa quo?</p>
+          </div>
+          <div class="well">
+            <div class="page-header">
+              <h1>Fancy Web App <small>the best web app you can ever imagine</small></h1>
+            </div>
+            <p class="lead">Some solid leading copy will help get your user engaged. Use this area to come up with some thing
+              real nice. Know what i am saying?</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad asperiores aut consectetur corporis dignissimos est explicabo
+              fuga hic id impedit itaque minus molestiae nam quae quibusdam repellat repellendus, sit, vero.</p>
+
+            <a href="#" class="btn btn-primary" ng-click="alertCtrl.show=!alertCtrl.show">Click Me</a>
+            <a href="#" class="btn btn-link">More Info</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row" id="featuresHeading">
+      <div class="col-12">
+        <h2>More Features</h2>
+        <p class="lead">Cornhole kitsch Williamsburg pug bicycle rights vegan. Neutra food truck occupy kitsch sustainable.</p>
+      </div>
+    </div>
+
+    <div class="row" id="features" style="text-align: center">
+      <div class="col-sm-4">
+        <div class="panel">
+          <div class="panel-heading">
+            <div class="panel-title">
+              <h3>Have Fun in HTML5</h3>
+            </div>
+          </div>
+          <img src="assets/images/badge_html5.jpg" alt="HTML5" class="img-circle">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A alias, asperiores aut consectetur dolores eius esse
+            facilis ipsa laborum magnam modi necessitatibus nemo quibusdam quis quo ratione sequi sunt? Iure?</p>
+          <a href="" class="btn btn-primary btn-lg">Learn to code HTML5</a>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="panel">
+          <div class="panel-heading">
+            <div class="panel-title">
+              <h3>Style With CSS3</h3>
+            </div>
+          </div>
+          <img src="assets/images/badge_css3.jpg" alt="CSS3" class="img-circle">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A alias, asperiores aut consectetur dolores eius esse
+            facilis ipsa laborum magnam modi necessitatibus nemo quibusdam quis quo ratione sequi sunt? Iure?</p>
+          <a href="" class="btn btn-warning btn-lg">Learn to style with CSS3</a>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="panel">
+          <div class="panel-heading">
+            <div class="panel-title">
+              <h3>Ease With BootStrap</h3>
+            </div>
+          </div>
+          <img src="assets/images/badge_bootstrap.jpg" alt="BootStrap" class="img-circle">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A alias, asperiores aut consectetur dolores eius esse
+            facilis ipsa laborum magnam modi necessitatibus nemo quibusdam quis quo ratione sequi sunt? Iure?</p>
+          <a href="" class="btn btn-danger btn-lg">Learn to use bootstrap</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" id="moreInfo" ng-controller="tabController as tabCtrl">
+      <div class="col-sm-6">
+        <uib-tabset active="1">
+          <uib-tab index="0" heading="tab 1">
+            <h2>Our Location <small>more like our favourite surfing spot</small></h2>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d236161.5167229682!2d114.1277!3d22.352733999999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1szh-CN!2shk!4v1515337738073" width="100%" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquam aspernatur at atque blanditiis
+              consequatur consequuntur cumque, cupiditate dolorem doloribus eius expedita fugiat nesciunt odio officia
+              saepe similique vitae voluptatem!
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquam aspernatur at atque blanditiis
+              consequatur consequuntur cumque, cupiditate dolorem doloribus eius expedita fugiat nesciunt odio officia
+              saepe similique vitae voluptatem!
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquam aspernatur at atque blanditiis
+              consequatur consequuntur cumque, cupiditate dolorem doloribus eius expedita fugiat nesciunt odio officia
+              saepe similique vitae voluptatem!
+            </p>
+          </uib-tab>
+          <uib-tab index="1" heading="tab 2">
+            <h2>A left float picture <small>Using placehold.it</small></h2>
+            <img src="http://placehold.it/140/" alt="140x140 pic" class="img-thumbnail pull-left">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquam aspernatur at atque blanditiis
+              consequatur consequuntur cumque, cupiditate dolorem doloribus eius expedita fugiat nesciunt odio officia
+              saepe similique vitae voluptatem!
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquam aspernatur at atque blanditiis
+              consequatur consequuntur cumque, cupiditate dolorem doloribus eius expedita fugiat nesciunt odio officia
+              saepe similique vitae voluptatem!
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquam aspernatur at atque blanditiis
+              consequatur consequuntur cumque, cupiditate dolorem doloribus eius expedita fugiat nesciunt odio officia
+              saepe similique vitae voluptatem!
+            </p>
+            <div ng-controller="modalController as  modalCtrl">
+              <a href="#modalDemoID" class="btn btn-warning btn-default" ng-click="modalCtrl.open()"><span class="glyphicon glyphicon-hand-up"></span>&nbsp;Click for a modal window</a>
+            </div>
+            <script type="text/ng-template" id="modalDemo.html">
+              <div class="modal-content" id="modal-content">
+                <div class="modal-header" id="modal-header">
+                  <button class="close" ng-click="modalInstanceCtrl.ok()">&times;</button>
+                  <div class="modal-title" id="modal-title">
+                    <h4>A Modal Window</h4>
+                  </div>
+                </div>
+                <div class="modal-body" id="modal-body">
+                  <h4>Text in a modal</h4>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                  <h4>Popovers in a modal</h4>
+                  <button class="btn btn-default btn-danger">Don't click this button</button>
+                  <h4>Tool tips in modal</h4>
+                  <a href="">This link</a> should have a tool tip, and so it should <a href="">This one!</a>
+                  <hr>
+                  <p><small class="text-muted">PS: This form dosen't do any thing, just head up!</small></p>
+                  <form action="" class="form-horizontal">
+                    <div class="form-group">
+                      <div class="col-sm-2">
+                        <label for="nameInput" class=" control-label">Name</label>
+                      </div>
+
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" placeholder="Name" id="nameInput">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-sm-2">
+                        <label for="emailInput" class="control-label">Email</label>
+                      </div>
+
+                      <div class="col-sm-10">
+                        <input type="email" class="form-control" placeholder="Email" id="emailInput">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-sm-2">
+                        <label for="msgInput" class="control-label">Message</label>
+                      </div>
+                      <div class="col-sm-10">
+                        <textarea class="form-control" placeholder="Message" id="msgInput" rows="4" style="margin-bottom: 25px;"></textarea>
+                        <input type="submit" class="btn btn-default btn-success pull-right" value="Send">
+                      </div>
+                    </div>
+                  </form>
+
+                </div>
+                <div class="modal-footer" id="modal-footer">
+                  <button class="btn btn-default" ng-click="modalInstanceCtrl.ok()">OK</button>
+                  <button class="btn btn-primary" ng-click="modalInstanceCtrl.cancel()">Save Changed</button>
+                </div>
+              </div>
+            </script>
+          </uib-tab>
+        </uib-tabset>
+      </div>
+      <div class="col-sm-6">
+
+      </div>
+    </div>
+
+    <div class="row" id="moreCourses">
+
+    </div>
+  </div>
+
+  <footer>
+
+  </footer>
+</body>
+</html>

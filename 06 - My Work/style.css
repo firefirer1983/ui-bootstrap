@@ -1,0 +1,25 @@
+#carouselID {
+  margin-top: 75px;
+}
+
+.well {
+  margin: 20px 0;
+}
+
+.panel {
+  border: 1px solid #ddd;
+}
+
+.panel-heading {
+  background-color: #eee;
+}
+
+.panel img {
+  margin: 20px 0 0
+}
+.panel p {
+  margin: 10px 10px;
+}
+.panel a {
+  margin: 0 0 20px;
+}
