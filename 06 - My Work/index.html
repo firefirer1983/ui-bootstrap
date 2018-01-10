@@ -216,9 +216,9 @@
                   <h4>Text in a modal</h4>
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                   <h4>Popovers in a modal</h4>
-                  <button class="btn btn-default btn-danger">Don't click this button</button>
+                  <button uib-popover="I knew you would." popover-title="You clicked it!" class="btn btn-default btn-danger">Don't click this button</button>
                   <h4>Tool tips in modal</h4>
-                  <a href="">This link</a> should have a tool tip, and so it should <a href="">This one!</a>
+                  <a href="" uib-tooltip="Tooltip">This link</a> should have a tool tip, and so it should <a href="" uib-tooltip="Tooltip 2">This one!</a>
                   <hr>
                   <p><small class="text-muted">PS: This form dosen't do any thing, just head up!</small></p>
                   <form action="" class="form-horizontal">
@@ -250,7 +250,6 @@
                       </div>
                     </div>
                   </form>
-
                 </div>
                 <div class="modal-footer" id="modal-footer">
                   <button class="btn btn-default" ng-click="modalInstanceCtrl.ok()">OK</button>
